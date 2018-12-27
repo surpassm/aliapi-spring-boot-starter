@@ -99,11 +99,11 @@ ali:
 @Resource
 privet AliPayF2fService aliPayF2fService;
 AlipayTradePayResponse respone = aliPayF2fService.aliPayF2fBarCode(AlipayTradePayF2fModel.builder()
-                                                                   				.authCode() //用户付款码
-                                                                   				.outTradeNo()//商户订单号，需要保证不重复
-                                                                   				.storeId()//商户门店编号
-                                                                   				.totalAmount()//订单总金额，单位为元
-                                                                   				.timeoutExpress();//交易超时时间 单位秒);
+                                                                            .authCode() //用户付款码
+                                                                            .outTradeNo()//商户订单号，需要保证不重复
+                                                                            .storeId()//商户门店编号
+                                                                            .totalAmount()//订单总金额，单位为元
+                                                                            .timeoutExpress();//交易超时时间 单位秒);
 
 ```
 
