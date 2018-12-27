@@ -68,15 +68,14 @@ public class AliPayF2fServiceImpl implements AliPayF2fService {
 			log.info("subject"+ExcaptionEnums.PARAMETERS_NOTNULL.getValue());
 			throw new CustomExcaption("subject"+ExcaptionEnums.PARAMETERS_NOTNULL.getValue());
 		}
-
 		AlipayTradePayRequest request = new AlipayTradePayRequest();
 		request.setBizContent(objectMapper.writeValueAsString(alipayTradePayF2fModel));
-		//通过alipayClient调用API，获得对应的response类
-		AlipayTradePayResponse response = null;
+		//通过aliPayClient调用API，获得对应的response类
+		AlipayTradePayResponse response;
 		try {
 			response = alipayClient.execute(request);
 		} catch (AlipayApiException e) {
-			e.printStackTrace();
+			log.info(e.getErrMsg());
 			throw new CustomExcaption(e.getMessage());
 		}
 		return response;

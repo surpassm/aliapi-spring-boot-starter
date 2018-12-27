@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Import;
  * description 读取器
  */
 @Configuration
-@ConditionalOnProperty(name = "ali.pay.f2f.enabled", matchIfMissing = true)
+@ConditionalOnProperty(name = "ali.pay.f2f.f2fEnable", matchIfMissing = true)
 @Import({AliPayF2fServiceImpl.class,
 		SingleThreadAliPayClientHolderConfig.class,
 		AliPayProperties.class

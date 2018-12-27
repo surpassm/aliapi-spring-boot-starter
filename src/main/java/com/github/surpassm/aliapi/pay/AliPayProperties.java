@@ -15,7 +15,7 @@ public class AliPayProperties {
 	/**
 	 * 当面付开关
 	 */
-	private Boolean enable;
+	private Boolean f2fEnable;
 	/**
 	 * 支付宝网关
 	 */

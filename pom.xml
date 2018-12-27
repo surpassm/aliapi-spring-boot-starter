@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.surpassm</groupId>
     <artifactId>aliapi-spring-boot-starter</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1.RELEASE</version>
     <packaging>jar</packaging>
     <name>aliapi-spring-boot-starter</name>
     <url>https://github.com/surpassm/aliapi-spring-boot-starter</url>
-    <description>蚂蚁金服API接口便利使用封装</description>
+    <description>蚂蚁金服API接口自动装配使用封装</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -40,6 +40,7 @@
             <version>${boot-starter-parent.version}</version>
             <optional>true</optional>
         </dependency>
+        <!-- 支付相关 -->
         <dependency>
             <groupId>com.alipay.sdk</groupId>
             <artifactId>alipay-sdk-java</artifactId>

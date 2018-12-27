@@ -1,6 +1,9 @@
 package com.github.surpassm.aliapi.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author mc
@@ -9,6 +12,9 @@ import lombok.Data;
  * description 当面付- 条码支付
  */
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class AlipayTradePayF2fModel {
 	/**
 	 * 商户订单号，需要保证不重复
