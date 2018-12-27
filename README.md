@@ -47,7 +47,7 @@ public class Bootstrap {
 ### 每个API使用方式
 #### 一、支付能力
 
-#### 1. 当面付
+#### **1. 当面付**
 
 - 第一步：加入依赖
 ```
@@ -113,7 +113,7 @@ AlipayTradePayResponse respone = aliPayF2fService.alipayF2fTradePrecreate(AliPay
 
 ```
 
-#### 2. APP支付查询
+#### **2. APP支付查询**
 
 - 第一步：加入依赖
 ```
