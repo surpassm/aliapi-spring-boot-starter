@@ -63,11 +63,9 @@ public class Bootstrap {
 @EnableAliPayF2fDoc  //这个注解是启动:支付能力->当面付
 @SpringBootApplication
 public class Bootstrap {
-
     public static void main(String[] args) {
         SpringApplication.run(Bootstrap.class, args);
     }
-
 }
 ```
 - 第三步：在application.yml中配置
@@ -93,16 +91,90 @@ ali:
     aliPayPublicKey:
 ```
 - 第四步：调用AliPayF2fService 接口 
-    - AlipayTradePayF2fModel 属性说明请参见类-> com.github.surpassm.aliapi.entity.AlipayTradePayF2fModel;
+    - AliPayF2fModel 属性说明请参见类-> com.github.surpa ssm.aliapi.entity.AliPayF2fModel;
     - 下面是Demo:
 ```
 @Resource
 privet AliPayF2fService aliPayF2fService;
-AlipayTradePayResponse respone = aliPayF2fService.aliPayF2fBarCode(AlipayTradePayF2fModel.builder()
+//条码支付
+AlipayTradePayResponse respone = aliPayF2fService.aliPayF2fBarCode(AliPayF2fModel.builder()
                                                                             .authCode() //用户付款码
                                                                             .outTradeNo()//商户订单号，需要保证不重复
                                                                             .storeId()//商户门店编号
                                                                             .totalAmount()//订单总金额，单位为元
+                                                                            .timeoutExpress();//交易超时时间 单位秒);
+//扫码支付
+AlipayTradePayResponse respone = aliPayF2fService.alipayF2fTradePrecreate(AliPayF2fModel.builder()
+                                                                            .outTradeNo() //商户订单号
+                                                                            .totalAmount()//订单总金额
+                                                                            .subject()//订单标题
+                                                                            .storeId()//商户门店编号
+                                                                            .timeoutExpress();//交易超时时间 单位秒);
+
+```
+
+#### 2. APP支付查询
+
+- 第一步：加入依赖
+```
+<dependency>
+    <groupId>com.github.surpassm</groupId>
+    <artifactId>aliapi-spring-boot-starter</artifactId>
+    <version>0.0.1.RELEASE</version>
+</dependency>
+```
+- 第二步：在应用主类中增加@EnableAliPayAppDoc注解。
+
+```$xslt
+@EnableAliPayAppDoc  //这个注解是启动:支付能力->APP支付查询
+@SpringBootApplication
+public class Bootstrap {
+    public static void main(String[] args) {
+        SpringApplication.run(Bootstrap.class, args);
+    }
+}
+```
+- 第三步：在application.yml中配置
+```$xslt
+ali:
+  pay:
+    app:
+      #启动app功能 必填
+      appEnable: true
+    #请求和签名使用的字符编码格式，支持GBK和UTF-8 默认UTF-8 可以不填
+    charset: UTF-8
+    #商户生成签名字符串所使用的签名算法类型，目前支持RSA2和RSA，推荐使用RSA2 默认RSA2 可以不填
+    signType: RSA2
+    #参数返回格式，只支持json 可以不填
+    format: json
+    #支付宝网关 可以不填
+    url: https://openapi.alipay.com/gateway.do
+    #应用标识 必填
+    appId:
+    #应用私钥 必填
+    appPrivateKey:
+    #支付宝公钥，由支付宝生成 必填
+    aliPayPublicKey:
+```
+- 第四步：调用AliPayAppService 接口 
+    - AliPayAppModel 属性说明请参见类-> com.github.surpa ssm.aliapi.entity.AliPayAppModel;
+    - 下面是Demo:
+```
+@Resource
+privet AliPayAppService aliPayAppService;
+//APP支付查询接口
+AlipayTradePayResponse respone = aliPayAppService.alipayAppTradeQuery(AliPayF2fModel.builder()
+                                                                            .authCode() //用户付款码
+                                                                            .outTradeNo()//商户订单号，需要保证不重复
+                                                                            .storeId()//商户门店编号
+                                                                            .totalAmount()//订单总金额，单位为元
+                                                                            .timeoutExpress();//交易超时时间 单位秒);
+//APP交易退款接口
+AlipayTradePayResponse respone = aliPayAppService.alipayAppTradeRefund(AliPayF2fModel.builder()
+                                                                            .outTradeNo() //商户订单号
+                                                                            .totalAmount()//订单总金额
+                                                                            .subject()//订单标题
+                                                                            .storeId()//商户门店编号
                                                                             .timeoutExpress();//交易超时时间 单位秒);
 
 ```

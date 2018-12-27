@@ -1,5 +1,7 @@
 package com.github.surpassm.aliapi.pay;
 
+import com.github.surpassm.aliapi.pay.app.AliPayAppProperties;
+import com.github.surpassm.aliapi.pay.f2f.AliPayF2fProperties;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -10,12 +12,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * description 支付封装配置入口类
  */
 @Data
-@ConfigurationProperties(prefix = "ali.pay.f2f")
+@ConfigurationProperties(prefix = "ali.pay")
 public class AliPayProperties {
-	/**
-	 * 当面付开关
-	 */
-	private Boolean f2fEnable;
 	/**
 	 * 支付宝网关
 	 */
@@ -44,6 +42,14 @@ public class AliPayProperties {
 	 * 商户生成签名字符串所使用的签名算法类型，目前支持RSA2和RSA，推荐使用RSA2
 	 */
 	private String signType ="RSA2";
+	/**
+	 * 当面付
+	 */
+	private AliPayF2fProperties f2f;
+	/**
+	 * APP支付
+	 */
+	private AliPayAppProperties app;
 
 
 

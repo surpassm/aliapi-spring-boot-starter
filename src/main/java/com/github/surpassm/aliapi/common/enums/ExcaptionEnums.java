@@ -17,7 +17,11 @@ public enum ExcaptionEnums {
 	/**
 	 * 参数非法
 	 */
-	ILLEGAL_PARAMETERS(400,"参数非法")
+	ILLEGAL_PARAMETERS(400,"参数非法"),
+	/**
+	 * 类型错误
+	 */
+	TYPE_ERROR(400,"参数类型错误"),
 
 
 	;

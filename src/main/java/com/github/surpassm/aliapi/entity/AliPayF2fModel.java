@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AlipayTradePayF2fModel {
+public class AliPayF2fModel {
 	/**
 	 * 商户订单号，需要保证不重复
 	 */

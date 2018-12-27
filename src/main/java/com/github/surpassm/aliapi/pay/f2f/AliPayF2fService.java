@@ -13,9 +13,17 @@ import com.github.surpassm.aliapi.entity.*;
 public interface AliPayF2fService {
 	/**
 	 * 当面付- 条码支付
-	 * @param alipayTradePayF2fModel 条码支付
+	 * @param aliPayF2FModel 条码支付
 	 * @return AlipayTradePayResponse
 	 * @throws JsonProcessingException JSON异常
 	 */
-	AlipayTradePayResponse aliPayF2fBarCode(AlipayTradePayF2fModel alipayTradePayF2fModel) throws JsonProcessingException;
+	AlipayTradePayResponse aliPayF2fBarCode(AliPayF2fModel aliPayF2FModel) throws JsonProcessingException;
+
+	/**
+	 * 当面付-扫码支付
+	 * @param aliPayF2FModel 扫码支付
+	 * @return AlipayTradePayResponse
+	 * @throws JsonProcessingException JSON异常
+	 */
+	AlipayTradePayResponse alipayF2fTradePrecreate(AliPayF2fModel aliPayF2FModel) throws JsonProcessingException;
 }
