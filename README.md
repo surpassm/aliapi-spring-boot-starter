@@ -104,7 +104,7 @@ AlipayTradePayResponse respone = aliPayF2fService.aliPayF2fBarCode(AliPayF2fMode
                                                                             .totalAmount()//订单总金额，单位为元
                                                                             .timeoutExpress();//交易超时时间 单位秒);
 //扫码支付
-AlipayTradePayResponse respone = aliPayF2fService.alipayF2fTradePrecreate(AliPayF2fModel.builder()
+AlipayTradePrecreateResponse respone = aliPayF2fService.alipayF2fTradePrecreate(AliPayF2fModel.builder()
                                                                             .outTradeNo() //商户订单号
                                                                             .totalAmount()//订单总金额
                                                                             .subject()//订单标题
@@ -163,14 +163,14 @@ ali:
 @Resource
 privet AliPayAppService aliPayAppService;
 //APP支付查询接口
-AlipayTradePayResponse respone = aliPayAppService.alipayAppTradeQuery(AliPayF2fModel.builder()
+AlipayTradeQueryResponse respone = aliPayAppService.alipayAppTradeQuery(AliPayF2fModel.builder()
                                                                             .authCode() //用户付款码
                                                                             .outTradeNo()//商户订单号，需要保证不重复
                                                                             .storeId()//商户门店编号
                                                                             .totalAmount()//订单总金额，单位为元
                                                                             .timeoutExpress();//交易超时时间 单位秒);
 //APP交易退款接口
-AlipayTradePayResponse respone = aliPayAppService.alipayAppTradeRefund(AliPayF2fModel.builder()
+AlipayTradeRefundResponse respone = aliPayAppService.alipayAppTradeRefund(AliPayF2fModel.builder()
                                                                             .outTradeNo() //商户订单号
                                                                             .totalAmount()//订单总金额
                                                                             .subject()//订单标题
