@@ -3,7 +3,9 @@ package com.github.surpassm.aliapi.pay.f2f;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.request.AlipayTradePayRequest;
+import com.alipay.api.request.AlipayTradePrecreateRequest;
 import com.alipay.api.response.AlipayTradePayResponse;
+import com.alipay.api.response.AlipayTradePrecreateResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.surpassm.aliapi.common.constants.AliPayConstants;
 import com.github.surpassm.aliapi.common.enums.ExcaptionEnums;
@@ -82,7 +84,7 @@ public class AliPayF2fServiceImpl implements AliPayF2fService {
 	}
 
 	@Override
-	public AlipayTradePayResponse alipayF2fTradePrecreate(AliPayF2fModel aliPayF2FModel) throws JsonProcessingException {
+	public AlipayTradePrecreateResponse alipayF2fTradePrecreate(AliPayF2fModel aliPayF2FModel) throws JsonProcessingException {
 		//钉钉金额非空判断
 		if (aliPayF2FModel.getTotalAmount() == null){
 			log.info("totalAmount"+ExcaptionEnums.PARAMETERS_NOTNULL.getValue());
@@ -114,10 +116,10 @@ public class AliPayF2fServiceImpl implements AliPayF2fService {
 			log.info("timeoutExpress"+ExcaptionEnums.PARAMETERS_NOTNULL.getValue());
 			throw new CustomExcaption("timeoutExpress"+ExcaptionEnums.PARAMETERS_NOTNULL.getValue());
 		}
-		AlipayTradePayRequest request = new AlipayTradePayRequest();
+		AlipayTradePrecreateRequest request = new AlipayTradePrecreateRequest();
 		request.setBizContent(objectMapper.writeValueAsString(aliPayF2FModel));
 		//通过aliPayClient调用API，获得对应的response类
-		AlipayTradePayResponse response;
+		AlipayTradePrecreateResponse response;
 		try {
 			response = alipayClient.execute(request);
 		} catch (AlipayApiException e) {

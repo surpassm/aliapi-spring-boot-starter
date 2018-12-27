@@ -1,6 +1,8 @@
 package com.github.surpassm.aliapi.pay.app;
 
 import com.alipay.api.response.AlipayTradePayResponse;
+import com.alipay.api.response.AlipayTradeQueryResponse;
+import com.alipay.api.response.AlipayTradeRefundResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.surpassm.aliapi.entity.AliPayAppModel;
 
@@ -14,18 +16,18 @@ public interface AliPayAppService {
 	/**
 	 * APP支付查询接口
 	 * @param aliPayAppModel APP支付查询
-	 * @return AlipayTradePayResponse
+	 * @return AlipayTradeQueryResponse
 	 * @throws JsonProcessingException JSON异常
 	 */
-	AlipayTradePayResponse alipayAppTradeQuery(AliPayAppModel aliPayAppModel) throws JsonProcessingException;
+	AlipayTradeQueryResponse alipayAppTradeQuery(AliPayAppModel aliPayAppModel) throws JsonProcessingException;
 
 	/**
 	 * APP交易退款接口
 	 * @param aliPayAppModel 交易退款接口
-	 * @return AlipayTradePayResponse
+	 * @return AlipayTradeRefundResponse
 	 * @throws JsonProcessingException JSON异常
 	 */
-	AlipayTradePayResponse alipayAppTradeRefund(AliPayAppModel aliPayAppModel) throws JsonProcessingException;
+	AlipayTradeRefundResponse alipayAppTradeRefund(AliPayAppModel aliPayAppModel) throws JsonProcessingException;
 
 
 }

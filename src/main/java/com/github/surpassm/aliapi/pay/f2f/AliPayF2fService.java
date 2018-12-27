@@ -1,6 +1,7 @@
 package com.github.surpassm.aliapi.pay.f2f;
 
 import com.alipay.api.response.AlipayTradePayResponse;
+import com.alipay.api.response.AlipayTradePrecreateResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.surpassm.aliapi.entity.*;
 
@@ -22,8 +23,8 @@ public interface AliPayF2fService {
 	/**
 	 * 当面付-扫码支付
 	 * @param aliPayF2FModel 扫码支付
-	 * @return AlipayTradePayResponse
+	 * @return AlipayTradePrecreateResponse
 	 * @throws JsonProcessingException JSON异常
 	 */
-	AlipayTradePayResponse alipayF2fTradePrecreate(AliPayF2fModel aliPayF2FModel) throws JsonProcessingException;
+	AlipayTradePrecreateResponse alipayF2fTradePrecreate(AliPayF2fModel aliPayF2FModel) throws JsonProcessingException;
 }

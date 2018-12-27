@@ -3,7 +3,11 @@ package com.github.surpassm.aliapi.pay.app;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.request.AlipayTradePayRequest;
+import com.alipay.api.request.AlipayTradeQueryRequest;
+import com.alipay.api.request.AlipayTradeRefundRequest;
 import com.alipay.api.response.AlipayTradePayResponse;
+import com.alipay.api.response.AlipayTradeQueryResponse;
+import com.alipay.api.response.AlipayTradeRefundResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.surpassm.aliapi.common.constants.AliPayConstants;
@@ -30,7 +34,7 @@ public class AliPayAppServiceImpl implements AliPayAppService {
 	private AlipayClient alipayClient;
 
 	@Override
-	public AlipayTradePayResponse alipayAppTradeQuery(AliPayAppModel aliPayAppModel) throws JsonProcessingException {
+	public AlipayTradeQueryResponse alipayAppTradeQuery(AliPayAppModel aliPayAppModel) throws JsonProcessingException {
 		//支付时传入的商户订单号，非空
 		if (aliPayAppModel.getOutTradeNo() == null || !"".equals(aliPayAppModel.getOutTradeNo())){
 			log.info("outTradeNo"+ExcaptionEnums.PARAMETERS_NOTNULL.getValue());
@@ -49,10 +53,10 @@ public class AliPayAppServiceImpl implements AliPayAppService {
 			log.info("refundAmount"+ExcaptionEnums.PARAMETERS_NOTNULL.getValue());
 			throw new CustomExcaption("refundAmount"+ExcaptionEnums.PARAMETERS_NOTNULL.getValue());
 		}
-		AlipayTradePayRequest request = new AlipayTradePayRequest();
+		AlipayTradeQueryRequest request = new AlipayTradeQueryRequest();
 		request.setBizContent(objectMapper.writeValueAsString(aliPayAppModel));
 		//通过aliPayClient调用API，获得对应的response类
-		AlipayTradePayResponse response;
+		AlipayTradeQueryResponse response;
 		try {
 			response = alipayClient.execute(request);
 		} catch (AlipayApiException e) {
@@ -63,7 +67,7 @@ public class AliPayAppServiceImpl implements AliPayAppService {
 	}
 
 	@Override
-	public AlipayTradePayResponse alipayAppTradeRefund(AliPayAppModel aliPayAppModel) throws JsonProcessingException {
+	public AlipayTradeRefundResponse alipayAppTradeRefund(AliPayAppModel aliPayAppModel) throws JsonProcessingException {
 		//支付时传入的商户订单号，非空
 		if (aliPayAppModel.getOutTradeNo() == null || !"".equals(aliPayAppModel.getOutTradeNo())){
 			log.info("outTradeNo"+ExcaptionEnums.PARAMETERS_NOTNULL.getValue());
@@ -92,10 +96,10 @@ public class AliPayAppServiceImpl implements AliPayAppService {
 			throw new CustomExcaption(ExcaptionEnums.TYPE_ERROR.getValue());
 		}
 
-		AlipayTradePayRequest request = new AlipayTradePayRequest();
+		AlipayTradeRefundRequest request = new AlipayTradeRefundRequest();
 		request.setBizContent(objectMapper.writeValueAsString(aliPayAppModel));
 		//通过aliPayClient调用API，获得对应的response类
-		AlipayTradePayResponse response;
+		AlipayTradeRefundResponse response;
 		try {
 			response = alipayClient.execute(request);
 		} catch (AlipayApiException e) {
